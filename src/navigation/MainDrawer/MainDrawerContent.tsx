@@ -12,6 +12,7 @@ import ThemeContext from '../../lib/contexts/ThemeContext'
  * Added button to toggle theme and to exit app
  */
 const MainDrawerContent = (props: DrawerContentComponentProps) => {
+  const { navigation } = props
   const currentUser = "Usuário Atual"
   const { isThemeDark, toggleTheme } = useContext(ThemeContext)
 
@@ -43,7 +44,7 @@ const MainDrawerContent = (props: DrawerContentComponentProps) => {
         <Divider />
         <DrawerItem 
           label="Sair"
-          onPress={() => {}}
+          onPress={() => navigation.navigate('Login')}
           icon={props => <MaterialCommunityIcons  name="exit-to-app" {...props} />}
         />
       </Surface>

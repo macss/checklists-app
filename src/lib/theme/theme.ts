@@ -12,11 +12,17 @@ import merge from 'deepmerge';
 const CombinedDefaultTheme = merge(PaperDefaultTheme, NavigationDefaultTheme)
 const CombinedDarkTheme = merge(PaperDarkTheme, NavigationDarkTheme)
 
+/**
+ * The colors used on the app
+ */
 export const AppColors = {
   primary: Colors.blue500,
   secondary: Colors.green500
 }
 
+/**
+ * Light theme of the app
+ */
 export const defaultTheme = {
   ...CombinedDefaultTheme,
   colors: {
@@ -26,6 +32,9 @@ export const defaultTheme = {
   }
 }
 
+/**
+ * Dark theme of the app
+ */
 export const darkTheme = {
   ...CombinedDarkTheme,
   mode: 'exact',
