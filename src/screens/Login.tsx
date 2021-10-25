@@ -3,11 +3,25 @@ import { StyleSheet } from 'react-native'
 import { Button, Surface, TextInput, Card } from 'react-native-paper'
 import { AppStackScreenProps } from '../lib/utils'
 
+/**
+ * The accepted inputs of the form
+ */
 interface FormInputs {
+  /**
+   * Is the user's email used to have access on the app
+   */
   email: string
+  /**
+   * The password that is linked to the specific user's email
+   */
   password: string
 }
 
+/**
+ * The login screen, with a form to enter email and password and a button to confirm login
+ * 
+ * @returns JSX.Element
+ */
 const Login = ({ navigation }: AppStackScreenProps<'Login'>) => {
   const [inputs, setInputs] = useState<FormInputs>({
     email: '',
