@@ -8,6 +8,7 @@
     "eject": "C:\\Users\\MarcoA\\AppData\\Roaming\\npm\\expo eject"
   },
   "dependencies": {
+    "@react-native-async-storage/async-storage": "~1.15.0",
     "@react-navigation/drawer": "^6.1.8",
     "@react-navigation/native": "^6.0.6",
     "@react-navigation/native-stack": "^6.2.5",
@@ -23,7 +24,7 @@
     "react-native-safe-area-context": "3.2.0",
     "react-native-screens": "~3.4.0",
     "react-native-web": "^0.17.5",
-    "@react-native-async-storage/async-storage": "~1.15.0"
+    "react-redux": "^7.2.5"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
