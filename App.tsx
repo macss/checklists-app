@@ -7,7 +7,12 @@ import { darkTheme, defaultTheme } from './src/lib/theme';
 import ThemeContext from './src/lib/contexts/ThemeContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { AppStorageKeys } from './src/lib/utils';
+import { Provider as StoreProvider } from 'react-redux'
+import store from './src/lib/store';
 
+/**
+ * The main component of the application, it is used to setup context providers such as store, theme and theme manipulation and navigation.
+ */
 export default function App() {
   const [isThemeDark, setIsThemeDark] = useState(false)
 
@@ -58,13 +63,15 @@ export default function App() {
   )
 
   return (
-   <PaperProvider theme={theme}>
-      <ThemeContext.Provider value={themePreferences}>
-        <NavigationContainer theme={theme}>
-          <StatusBar />
-          <MainStack />
-        </NavigationContainer>
-      </ThemeContext.Provider>
-    </PaperProvider>
+    <StoreProvider store={store}>
+      <PaperProvider theme={theme}>
+        <ThemeContext.Provider value={themePreferences}>
+          <NavigationContainer theme={theme}>
+            <StatusBar />
+            <MainStack />
+          </NavigationContainer>
+        </ThemeContext.Provider>
+      </PaperProvider>
+    </StoreProvider>
   );
 }
