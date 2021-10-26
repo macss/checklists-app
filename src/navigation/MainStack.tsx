@@ -2,7 +2,7 @@ import { NavigatorScreenParams } from '@react-navigation/core'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import React from 'react'
 import { RootDrawerParamList } from '.'
-import { Login } from '../screens'
+import { Login, SignUp } from '../screens'
 import MainDrawer from './MainDrawer'
 
 /**
@@ -11,6 +11,7 @@ import MainDrawer from './MainDrawer'
 export type RootStackParamList = {
   Drawer: NavigatorScreenParams<RootDrawerParamList>
   Login: undefined
+  SignUp: undefined
 }
 
 const Stack = createNativeStackNavigator<RootStackParamList>()
@@ -32,6 +33,7 @@ const MainStack = () => {
     >
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="Drawer" component={MainDrawer} options={{ title: 'Home' }} />
+      <Stack.Screen name="SignUp" component={SignUp}/>
     </Stack.Navigator>
   )
 }
