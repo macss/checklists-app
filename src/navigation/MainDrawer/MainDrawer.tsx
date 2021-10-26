@@ -4,6 +4,8 @@ import { Checklists, Home, NewChecklist, ViewChecklist } from '../../screens'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import { AppColors } from '../../lib/theme'
 import MainDrawerContent from './MainDrawerContent'
+import { IconButton } from 'react-native-paper'
+import { AppDrawerScreenProps } from '../../lib/utils'
 
 /**
  * Defines all routes of the drawer navigation and it's parameters if any
@@ -55,10 +57,11 @@ const MainDrawer = () => {
       <Drawer.Screen 
         name="NewChecklist" 
         component={NewChecklist}
-        options={{
+        options={({ navigation }: AppDrawerScreenProps<'NewChecklist'>) => ({
           title: 'Novo Checklist',
-          drawerIcon: (props) => <MaterialCommunityIcons name="playlist-plus" {...props} />
-        }}
+          drawerIcon: (props) => <MaterialCommunityIcons name="playlist-plus" {...props} />,
+          headerLeft: (props) => <IconButton icon="arrow-left" color={props.tintColor} {...props} onPress={() => navigation.goBack() }/>
+        })}
       />
       <Drawer.Screen 
         name="ViewChecklist" 

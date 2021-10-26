@@ -1,6 +1,7 @@
 import React from 'react'
-import { StyleSheet, View } from 'react-native'
-import { Text } from 'react-native-paper'
+import { View } from 'react-native'
+import { Surface, Text } from 'react-native-paper'
+import { defaultStyles } from '../lib/theme'
 import { AppDrawerScreenProps } from '../lib/utils'
 
 /**
@@ -8,12 +9,12 @@ import { AppDrawerScreenProps } from '../lib/utils'
  */
 const Home = ({ navigation }: AppDrawerScreenProps<'Home'>) => {
   return (
-    <View>
-      <Text>Olá</Text>
+    <View style={defaultStyles.container}>
+      <Surface style={defaultStyles.surface}>
+        <Text>Olá</Text>
+      </Surface>
     </View>
   )
 }
 
 export default Home
-
-const styles = StyleSheet.create({})

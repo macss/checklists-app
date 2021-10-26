@@ -9,6 +9,9 @@ import {
 } from 'react-native-paper';
 import merge from 'deepmerge';
 
+import { StyleSheet } from 'react-native';
+import { AppDimensions } from '.';
+
 const CombinedDefaultTheme = merge(PaperDefaultTheme, NavigationDefaultTheme)
 const CombinedDarkTheme = merge(PaperDarkTheme, NavigationDarkTheme)
 
@@ -44,3 +47,17 @@ export const darkTheme = {
     accent: AppColors.secondary
   }
 } as typeof PaperDarkTheme & typeof NavigationDarkTheme
+
+/**
+ * Default styles
+ */
+export const defaultStyles = StyleSheet.create({
+  container: {
+    flex: 1,
+    display: 'flex'
+  },
+  surface: {
+    flex: 1,
+    padding: AppDimensions.containerPadding
+  }
+})

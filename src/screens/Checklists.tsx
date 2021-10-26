@@ -1,5 +1,7 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { Text, View } from 'react-native'
+import { Surface } from 'react-native-paper'
+import { defaultStyles } from '../lib/theme'
 import { AppDrawerScreenProps } from '../lib/utils'
 
 /**
@@ -7,12 +9,12 @@ import { AppDrawerScreenProps } from '../lib/utils'
  */
 const Checklists = (props: AppDrawerScreenProps<'Checklists'>) => {
   return (
-    <View>
-      <Text></Text>
+    <View style={defaultStyles.container}>
+      <Surface style={defaultStyles.surface}>
+        <Text>Checklists</Text>
+      </Surface>
     </View>
   )
 }
 
 export default Checklists
-
-const styles = StyleSheet.create({})

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { StyleSheet } from 'react-native'
 import { Button, Surface, TextInput, Card } from 'react-native-paper'
+import { AppDimensions, defaultStyles } from '../lib/theme'
 import { AppStackScreenProps } from '../lib/utils'
 
 /**
@@ -72,9 +73,9 @@ export default Login
 
 const styles = StyleSheet.create({
   container: {
-    display: 'flex',
+    ...defaultStyles.container,
     flexGrow: 1,
-    padding: 16,
+    padding: AppDimensions.containerPadding,
     justifyContent: 'center'
   },
   title: {

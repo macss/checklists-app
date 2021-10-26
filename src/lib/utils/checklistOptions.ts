@@ -7,7 +7,7 @@ const checklistOptions = [
   'Condições dos retrovisores', 
   'Condições dos vidros e travas das portas', 
   'Documentação do veículo', 
-  'Equipameto obrigatório', 
+  'Equipamento obrigatório', 
   'Funcionamento da buzina', 
   'Funcionamento da luz de ré', 
   'Funcionamento das lanternas', 
