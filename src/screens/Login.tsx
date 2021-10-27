@@ -38,7 +38,7 @@ const Login = ({ navigation }: AppStackScreenProps<'Login'>) => {
 
   return (
     <Surface style={styles.container}>
-      <Card elevation={3}>
+      <Card elevation={3} style={styles.card}>
         <Card.Title title="Entrar" titleStyle={styles.title}/>
         <Card.Content>
           <TextInput 
@@ -76,7 +76,11 @@ const styles = StyleSheet.create({
     ...defaultStyles.container,
     flexGrow: 1,
     padding: AppDimensions.containerPadding,
-    justifyContent: 'center'
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  card: {
+    width: 350
   },
   title: {
     textAlign: 'center',

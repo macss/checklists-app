@@ -10,7 +10,7 @@ import {
 import merge from 'deepmerge';
 
 import { StyleSheet } from 'react-native';
-import { AppDimensions } from '.';
+import AppDimensions from './dimensions';
 
 const CombinedDefaultTheme = merge(PaperDefaultTheme, NavigationDefaultTheme)
 const CombinedDarkTheme = merge(PaperDarkTheme, NavigationDarkTheme)
