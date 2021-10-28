@@ -1,9 +1,7 @@
-import Common from "./Common";
-
 /**
  * The attributes a user have
  */
-interface User extends Common {
+interface User {
   /**
    * The user name
    */

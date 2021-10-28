@@ -5,6 +5,7 @@ import { Text, Headline, Subheading, Divider, Surface, Switch } from 'react-nati
 import { AppColors } from '../../lib/theme'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import ThemeContext from '../../lib/contexts/ThemeContext'
+import UserContext from '../../lib/contexts/UserContext'
 
 /**
  * Custom drawer content, added title, subtitle and user display.
@@ -13,7 +14,7 @@ import ThemeContext from '../../lib/contexts/ThemeContext'
  */
 const MainDrawerContent = (props: DrawerContentComponentProps) => {
   const { navigation } = props
-  const currentUser = "Usuário Atual"
+  const { user, setUser } = useContext(UserContext)
   const { isThemeDark, toggleTheme } = useContext(ThemeContext)
 
   return (
@@ -27,7 +28,7 @@ const MainDrawerContent = (props: DrawerContentComponentProps) => {
             Aperam BioEnergia
           </Subheading>
           <Text style={styles.headerFont}>
-            {currentUser}
+            {user?.name ?? 'Usuário Anônimo'}
           </Text>
         </View>
         <DrawerItemList {...props} />
@@ -44,7 +45,7 @@ const MainDrawerContent = (props: DrawerContentComponentProps) => {
         <Divider />
         <DrawerItem 
           label="Sair"
-          onPress={() => navigation.navigate('Login')}
+          onPress={() => setUser(undefined) /*() => navigation.navigate('Login')*/}
           icon={props => <MaterialCommunityIcons  name="exit-to-app" {...props} />}
         />
       </Surface>

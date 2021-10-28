@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { ScrollView, StyleSheet, Text, View } from 'react-native'
-import { Checkbox, Surface } from 'react-native-paper'
+import { Button, Checkbox, Surface } from 'react-native-paper'
+import SelectDropDown from '../lib/components/SelectDropDown'
 import { Checklist, Common } from '../lib/model'
 import { AppDrawerScreenProps, checklistOptions } from '../lib/utils'
 
@@ -87,6 +88,27 @@ const NewChecklist = ({ navigation }: AppDrawerScreenProps<'NewChecklist'>) => {
   return (
     <ScrollView>
       <Surface>
+        <SelectDropDown 
+          items={[
+            {
+              placa: 'HBQ-1234'
+            },
+            {
+              placa: 'HBQ-4321'
+            },
+            {
+              placa: 'HBQ-7891'
+            },
+          ]}
+          onItemPress={(key) => console.log(key)}
+          labelProperty='placa'
+          anchorLabel="Selecionar veículo"
+          style={{
+            marginHorizontal: 16,
+            marginTop: 8
+          }}
+          mode="outlined"
+        />
         <Checkbox.Item 
           label="Selecionar todos"
           status={allChecked ? 'checked' : noneChecked ? 'unchecked' : 'indeterminate'}
@@ -102,6 +124,9 @@ const NewChecklist = ({ navigation }: AppDrawerScreenProps<'NewChecklist'>) => {
             />
           ))
         }
+        <Button icon="content-save">
+          Salvar checklist
+        </Button>
       </Surface>
     </ScrollView>
   )
