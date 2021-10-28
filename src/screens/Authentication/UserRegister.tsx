@@ -3,6 +3,7 @@ import { StyleSheet } from 'react-native'
 import { Button, Card, Surface, TextInput } from 'react-native-paper'
 import { AppDimensions, defaultStyles } from '../../lib/theme'
 import { AppStackScreenProps } from '../../lib/utils'
+import Strings from '../../lib/utils/strings'
 
 const UserRegister = ({ navigation, route: { params: { user } }   }: AppStackScreenProps<'AuthFlowUserRegister'>) => {
   const [register, setRegister] = useState('0000')
@@ -10,11 +11,11 @@ const UserRegister = ({ navigation, route: { params: { user } }   }: AppStackScr
   return (
     <Surface style={styles.container}>
       <Card elevation={3} style={styles.card}>
-        <Card.Title title="Registro" titleStyle={styles.title}/>
+        <Card.Title title={Strings.register} titleStyle={styles.title}/>
         <Card.Content>
           <TextInput 
             style={styles.input}
-            label="Digite seu registro"
+            label={Strings.enterYourRegister}
             value={register}
             onChangeText={setRegister}
             mode="outlined"
@@ -34,7 +35,7 @@ const UserRegister = ({ navigation, route: { params: { user } }   }: AppStackScr
             icon="arrow-right"
             contentStyle={styles.button}
           >
-            Próxima
+            { Strings.next }
           </Button>
         </Card.Content>
       </Card>      
@@ -58,7 +59,7 @@ const styles = StyleSheet.create({
   title: {
     textAlign: 'center',
     marginBottom: 8,
-    fontSize: 36,
+    fontSize: 24,
     lineHeight: 48
   },
   input: {

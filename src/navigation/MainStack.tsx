@@ -6,6 +6,7 @@ import { RootDrawerParamList } from '.'
 import { LoadingIndicator } from '../lib/components'
 import UserContext from '../lib/contexts/UserContext'
 import { User } from '../lib/model'
+import Strings from '../lib/utils/strings'
 import { UserLicense, UserManagement, UserName, UserRegister } from '../screens/Authentication'
 import MainDrawer from './MainDrawer'
 
@@ -51,17 +52,17 @@ const MainStack = () => {
     >
       {
         loading ?
-          <Stack.Screen name="AuthFlowLoading" component={LoadingIndicator} options={{ title: 'Carregando...'}} />
+          <Stack.Screen name="AuthFlowLoading" component={LoadingIndicator} options={{ title: Strings.loading}} />
         :
         !Boolean(user) ?
           <Stack.Group>
-            <Stack.Screen name="AuthFlowUserName" component={UserName} options={{ title: 'Cadastro inicial - Nome' }}/>
-            <Stack.Screen name="AuthFlowUserManagement" component={UserManagement} options={{ title: 'Cadastro inicial - Gerência' }} />
-            <Stack.Screen name="AuthFlowUserRegister" component={UserRegister} options={{ title: 'Cadastro inicial - Registro' }} />
-            <Stack.Screen name="AuthFlowUserLicense" component={UserLicense} options={{ title: 'Cadastro inicial - Dados da Habilitação' }} />
+            <Stack.Screen name="AuthFlowUserName" component={UserName} options={{ title: Strings.screenTitles.authFlow.name }}/>
+            <Stack.Screen name="AuthFlowUserManagement" component={UserManagement} options={{ title: Strings.screenTitles.authFlow.management }} />
+            <Stack.Screen name="AuthFlowUserRegister" component={UserRegister} options={{ title: Strings.screenTitles.authFlow.register }} />
+            <Stack.Screen name="AuthFlowUserLicense" component={UserLicense} options={{ title: Strings.screenTitles.authFlow.license }} />
           </Stack.Group> 
         :
-          <Stack.Screen name="Drawer" component={MainDrawer} options={{ title: 'Home' }} />
+          <Stack.Screen name="Drawer" component={MainDrawer} options={{ title: Strings.screenTitles.home }} />
       }
     </Stack.Navigator>
   )

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Pressable, StyleProp, StyleSheet, ViewStyle } from 'react-native'
 import { List, Menu, TextInput } from 'react-native-paper'
 import { TextInputProps } from 'react-native-paper/lib/typescript/components/TextInput/TextInput'
+import Strings from '../utils/strings'
 
 
 type SelectDropDownMenu<I> = {
@@ -12,7 +13,7 @@ type SelectDropDownMenu<I> = {
   containerStyle?: StyleProp<ViewStyle>
 } & Partial<TextInputProps>
 
-const SelectDropDown = <I,>({ items, labelProperty, onItemPress, anchorLabel = 'Abrir Menu', style, ...rest }: SelectDropDownMenu<I>) => {
+const SelectDropDown = <I,>({ items, labelProperty, onItemPress, anchorLabel = Strings.openMenu, containerStyle, ...rest }: SelectDropDownMenu<I>) => {
   const [visible, setVisible] = useState(false)
   const [itemWidth, setItemWidth] = useState(0)
   const [selectedKey, setSelectedKey] = useState<number>(-1)
@@ -25,7 +26,7 @@ const SelectDropDown = <I,>({ items, labelProperty, onItemPress, anchorLabel = '
       visible={visible}
       onDismiss={toggleMenu}
       anchor={
-        <Pressable style={style} onPress={toggleMenu} onLayout={({ nativeEvent: { layout: { width } } }) => { setItemWidth(width) }}>
+        <Pressable style={containerStyle} onPress={toggleMenu} onLayout={({ nativeEvent: { layout: { width } } }) => { setItemWidth(width) }}>
           <TextInput 
             label={anchorLabel}  
             right={<TextInput.Icon name={visible ? 'chevron-down' : 'chevron-up'} onPress={toggleMenu} />}            

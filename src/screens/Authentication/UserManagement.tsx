@@ -1,22 +1,25 @@
 import React, { useState } from 'react'
 import { StyleSheet } from 'react-native'
-import { Button, Card, Surface, TextInput } from 'react-native-paper'
+import { Button, Card, Surface } from 'react-native-paper'
+import { SelectDropDown } from '../../lib/components'
 import { AppDimensions, defaultStyles } from '../../lib/theme'
-import { AppStackScreenProps } from '../../lib/utils'
+import { AppStackScreenProps, managements } from '../../lib/utils'
+import Strings from '../../lib/utils/strings'
 
 const UserManagement = ({ navigation, route: { params: { user } } }: AppStackScreenProps<'AuthFlowUserManagement'>) => {
-  const [management, setManagement] = useState('')
+  const [management, setManagement] = useState<typeof managements[number]>()
 
   return (
     <Surface style={styles.container}>
       <Card elevation={3} style={styles.card}>
-        <Card.Title title="Gerência" titleStyle={styles.title}/>
+        <Card.Title title={Strings.management} titleStyle={styles.title}/>
         <Card.Content>
-          <TextInput 
-            style={styles.input}
-            label="Selecione sua gerência"
-            value={management}
-            onChangeText={setManagement}
+          <SelectDropDown 
+            items={managements}
+            labelProperty='name'
+            onItemPress={(key) => setManagement(managements[key])}
+            anchorLabel={Strings.managementDropdownLabel}
+            containerStyle={styles.input}
             mode="outlined"
           />
           <Button
@@ -25,15 +28,15 @@ const UserManagement = ({ navigation, route: { params: { user } } }: AppStackScr
               navigation.navigate('AuthFlowUserRegister', {
                 user: {
                   ...user,
-                  management
+                  management: management?.initials ?? Strings.undefined
                 }
               })
             }}
             icon="arrow-right"
             contentStyle={styles.button}
           >
-            Próxima
-          </Button>
+            { Strings.next }
+          </Button> 
         </Card.Content>
       </Card>      
     </Surface>
@@ -55,7 +58,7 @@ const styles = StyleSheet.create({
   },
   title: {
     textAlign: 'center',
-    fontSize: 36,
+    fontSize: 24,
     lineHeight: 48,
     marginTop: 8
   },

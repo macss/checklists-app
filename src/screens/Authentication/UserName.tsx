@@ -3,6 +3,7 @@ import { StyleSheet } from 'react-native'
 import { Button, Card, Surface, TextInput } from 'react-native-paper'
 import { AppDimensions, defaultStyles } from '../../lib/theme'
 import { AppStackScreenProps } from '../../lib/utils'
+import Strings from '../../lib/utils/strings'
 
 const UserName = ({ navigation }: AppStackScreenProps<'AuthFlowUserName'>) => {
   const [name, setName] = useState('')
@@ -10,11 +11,11 @@ const UserName = ({ navigation }: AppStackScreenProps<'AuthFlowUserName'>) => {
   return (
     <Surface style={styles.container}>
       <Card elevation={3} style={styles.card}>
-        <Card.Title title="Cadastro inicial" titleStyle={styles.title}/>
+        <Card.Title title={Strings.initialRegistration} titleStyle={styles.title}/>
         <Card.Content>
           <TextInput 
             style={styles.input}
-            label="Digite seu nome"
+            label={Strings.enterYourName}
             value={name}
             onChangeText={setName}
             mode="outlined"
@@ -31,7 +32,7 @@ const UserName = ({ navigation }: AppStackScreenProps<'AuthFlowUserName'>) => {
             icon="arrow-right"
             contentStyle={styles.button}
           >
-            Próxima
+            { Strings.next }
           </Button>
         </Card.Content>
       </Card>      
@@ -54,7 +55,7 @@ const styles = StyleSheet.create({
   },
   title: {
     textAlign: 'center',
-    fontSize: 36,
+    fontSize: 24,
     lineHeight: 48,
     marginTop: 8
   },

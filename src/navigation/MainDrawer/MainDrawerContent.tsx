@@ -6,6 +6,7 @@ import { AppColors } from '../../lib/theme'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import ThemeContext from '../../lib/contexts/ThemeContext'
 import UserContext from '../../lib/contexts/UserContext'
+import Strings from '../../lib/utils/strings'
 
 /**
  * Custom drawer content, added title, subtitle and user display.
@@ -22,13 +23,13 @@ const MainDrawerContent = (props: DrawerContentComponentProps) => {
       <Surface style={{flexGrow: 1}}>
         <View style={styles.headerContainer}>
           <Headline style={styles.headerFont}>
-            Checklist Veícular
+            { Strings.vehiclesChecklist }
           </Headline>
           <Subheading style={styles.headerFont}>
             Aperam BioEnergia
           </Subheading>
           <Text style={styles.headerFont}>
-            {user?.name ?? 'Usuário Anônimo'}
+            { user?.name ?? Strings.anonymousUser }
           </Text>
         </View>
         <DrawerItemList {...props} />

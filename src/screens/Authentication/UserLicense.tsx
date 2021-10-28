@@ -4,6 +4,7 @@ import { Button, Card, Surface, TextInput } from 'react-native-paper'
 import UserContext from '../../lib/contexts/UserContext'
 import { AppDimensions, defaultStyles } from '../../lib/theme'
 import { AppStackScreenProps } from '../../lib/utils'
+import Strings from '../../lib/utils/strings'
 
 const UserLicense = ({ route: { params: { user } }  }: AppStackScreenProps<'AuthFlowUserLicense'>) => {
   const { setUser } = useContext(UserContext)
@@ -14,18 +15,18 @@ const UserLicense = ({ route: { params: { user } }  }: AppStackScreenProps<'Auth
   return (
     <Surface style={styles.container}>
       <Card elevation={3} style={styles.card}>
-        <Card.Title title="Habilitação" titleStyle={styles.title}/>
+        <Card.Title title={Strings.license} titleStyle={styles.title}/>
         <Card.Content>
           <TextInput 
             style={styles.input}
-            label="Número da Habilitação"
+            label={Strings.licenseNumber}
             value={licenseNumber}
             onChangeText={setLicenseNumber}
             mode="outlined"
           />
           <TextInput 
             style={styles.input}
-            label="Data de validade"
+            label={Strings.licenseExpirarion}
             value={licenseExpiration}
             onChangeText={setLicenseExpiration}
             mode="outlined"
@@ -42,7 +43,7 @@ const UserLicense = ({ route: { params: { user } }  }: AppStackScreenProps<'Auth
             icon="arrow-right"
             contentStyle={styles.button}
           >
-            Próxima
+            { Strings.next }
           </Button>
         </Card.Content>
       </Card>      
@@ -66,7 +67,7 @@ const styles = StyleSheet.create({
   title: {
     textAlign: 'center',
     marginBottom: 8,
-    fontSize: 36,
+    fontSize: 24,
     lineHeight: 48
   },
   input: {

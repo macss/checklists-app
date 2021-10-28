@@ -4,6 +4,7 @@ import { Button, Checkbox, Surface } from 'react-native-paper'
 import SelectDropDown from '../lib/components/SelectDropDown'
 import { Checklist, Common } from '../lib/model'
 import { AppDrawerScreenProps, checklistOptions } from '../lib/utils'
+import Strings from '../lib/utils/strings'
 
 const initialState: Omit<Checklist, keyof Common> = {
   user_id: '',
@@ -102,15 +103,15 @@ const NewChecklist = ({ navigation }: AppDrawerScreenProps<'NewChecklist'>) => {
           ]}
           onItemPress={(key) => console.log(key)}
           labelProperty='placa'
-          anchorLabel="Selecionar veículo"
-          style={{
+          anchorLabel={Strings.newChecklistDropdownLabel}
+          containerStyle={{
             marginHorizontal: 16,
             marginTop: 8
           }}
           mode="outlined"
         />
         <Checkbox.Item 
-          label="Selecionar todos"
+          label={Strings.selectAll}
           status={allChecked ? 'checked' : noneChecked ? 'unchecked' : 'indeterminate'}
           onPress={handleMainChecklistPress}
         />
@@ -125,7 +126,7 @@ const NewChecklist = ({ navigation }: AppDrawerScreenProps<'NewChecklist'>) => {
           ))
         }
         <Button icon="content-save">
-          Salvar checklist
+          { Strings.saveChecklist }
         </Button>
       </Surface>
     </ScrollView>

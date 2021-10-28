@@ -6,6 +6,7 @@ import { AppColors } from '../../lib/theme'
 import MainDrawerContent from './MainDrawerContent'
 import { IconButton } from 'react-native-paper'
 import { AppDrawerScreenProps } from '../../lib/utils'
+import Strings from '../../lib/utils/strings'
 
 /**
  * Defines all routes of the drawer navigation and it's parameters if any
@@ -43,14 +44,14 @@ const MainDrawer = () => {
         component={Home}
         options={{
           drawerIcon: (props) => <MaterialCommunityIcons name="home" {...props} />,
-          title: 'Home'
+          title: Strings.screenTitles.home
         }}
       />
       <Drawer.Screen 
         name="Checklists" 
         component={Checklists}
         options={{
-          title: 'Meus Checklists',
+          title: Strings.screenTitles.checklists,
           drawerIcon: (props) => <MaterialCommunityIcons name="playlist-check" {...props} />
         }}
       />
@@ -58,7 +59,7 @@ const MainDrawer = () => {
         name="NewChecklist" 
         component={NewChecklist}
         options={({ navigation }: AppDrawerScreenProps<'NewChecklist'>) => ({
-          title: 'Novo Checklist',
+          title: Strings.screenTitles.newChecklist,
           drawerIcon: (props) => <MaterialCommunityIcons name="playlist-plus" {...props} />,
           headerLeft: (props) => <IconButton icon="arrow-left" color={props.tintColor} {...props} onPress={() => navigation.goBack() }/>
         })}
@@ -67,6 +68,7 @@ const MainDrawer = () => {
         name="ViewChecklist" 
         component={ViewChecklist}
         options={{
+          title: Strings.screenTitles.viewChecklist,
           drawerItemStyle: {
             display: 'none'
           }
