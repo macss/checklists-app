@@ -1,12 +1,26 @@
 import React, { useState } from 'react'
 import { StyleSheet } from 'react-native'
-import { Button, Card, Surface, TextInput } from 'react-native-paper'
+import { Button, Card, Paragraph, Surface, TextInput } from 'react-native-paper'
 import { AppDimensions, defaultStyles } from '../../lib/theme'
 import { AppStackScreenProps } from '../../lib/utils'
 import Strings from '../../lib/utils/strings'
 
 const UserName = ({ navigation }: AppStackScreenProps<'AuthFlowUserName'>) => {
   const [name, setName] = useState('')
+  const [error, setError] = useState('')
+
+  const handlePress = () => {
+    setError('')
+    if (name === '') {
+      setError(Strings.pleaseEnterYourName)
+    } else {
+      navigation.navigate('AuthFlowUserManagement', {
+        user: {
+          name
+        }
+      })
+    }
+  }
 
   return (
     <Surface style={styles.container}>
@@ -15,20 +29,15 @@ const UserName = ({ navigation }: AppStackScreenProps<'AuthFlowUserName'>) => {
         <Card.Content>
           <TextInput 
             style={styles.input}
-            label={Strings.enterYourName}
+            label={error === '' ? Strings.enterYourName : error}
             value={name}
             onChangeText={setName}
             mode="outlined"
+            error={error !== ''}
           />
           <Button
             mode="contained"
-            onPress={() => {
-              navigation.navigate('AuthFlowUserManagement', {
-                user: {
-                  name
-                }
-              })
-            }}
+            onPress={handlePress}
             icon="arrow-right"
             contentStyle={styles.button}
           >

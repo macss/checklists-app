@@ -7,6 +7,21 @@ import Strings from '../../lib/utils/strings'
 
 const UserRegister = ({ navigation, route: { params: { user } }   }: AppStackScreenProps<'AuthFlowUserRegister'>) => {
   const [register, setRegister] = useState('0000')
+  const [error, setError] = useState('')
+
+  const handlePress = () => {
+    setError('')
+    if (register === '0000') {
+      setError(Strings.pleaseEnterYourRegister)
+    } else {
+      navigation.navigate('AuthFlowUserLicense', {
+        user: {
+          ...user,
+          register: Number(register)
+        }
+      })
+    }
+  }
 
   return (
     <Surface style={styles.container}>
@@ -15,23 +30,17 @@ const UserRegister = ({ navigation, route: { params: { user } }   }: AppStackScr
         <Card.Content>
           <TextInput 
             style={styles.input}
-            label={Strings.enterYourRegister}
+            label={error === '' ? Strings.enterYourRegister : error}
             value={register}
             onChangeText={setRegister}
             mode="outlined"
             keyboardType="numeric"
             left={<TextInput.Affix text="200" />}
+            error={error !== ''}
           />
           <Button
             mode="contained"
-            onPress={() => {
-              navigation.navigate('AuthFlowUserLicense', {
-                user: {
-                  ...user,
-                  register: Number(register)
-                }
-              })
-            }}
+            onPress={handlePress}
             icon="arrow-right"
             contentStyle={styles.button}
           >

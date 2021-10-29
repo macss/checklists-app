@@ -8,9 +8,35 @@ import Strings from '../../lib/utils/strings'
 
 const UserLicense = ({ route: { params: { user } }  }: AppStackScreenProps<'AuthFlowUserLicense'>) => {
   const { setUser } = useContext(UserContext)
-
+  
   const [licenseNumber, setLicenseNumber] = useState('')
   const [licenseExpiration, setLicenseExpiration] = useState('')
+  
+  const [errors, setErrors] = useState({
+    licenseNumber: '',
+    licenseExpiration: ''
+  })
+
+  const handlePress = () => {
+    setErrors({licenseExpiration: '', licenseNumber: ''})
+
+    if (licenseExpiration === '') {
+      setErrors(v => ({...v, licenseExpiration: Strings.pleaseEnterYourLicenseExpiration}))
+    }
+
+    if (licenseNumber === '') {
+      setErrors(v => ({...v, licenseExpiration: Strings.licenseNumber}))
+    }
+
+    if (licenseNumber !== '' && licenseExpiration !== '') {
+      setUser({
+        ...user,
+        license_number: Number(licenseNumber),
+        license_expiration: Number(licenseExpiration)
+      })
+    }
+
+  }
 
   return (
     <Surface style={styles.container}>
@@ -19,27 +45,23 @@ const UserLicense = ({ route: { params: { user } }  }: AppStackScreenProps<'Auth
         <Card.Content>
           <TextInput 
             style={styles.input}
-            label={Strings.licenseNumber}
+            label={errors.licenseNumber === '' ? Strings.licenseNumber : errors.licenseNumber}
+            error={errors.licenseNumber !== ''}
             value={licenseNumber}
             onChangeText={setLicenseNumber}
             mode="outlined"
           />
           <TextInput 
             style={styles.input}
-            label={Strings.licenseExpirarion}
+            label={errors.licenseExpiration === '' ? Strings.licenseExpiration : errors.licenseExpiration}
+            error={errors.licenseExpiration !== ''}
             value={licenseExpiration}
             onChangeText={setLicenseExpiration}
             mode="outlined"
           />
           <Button
             mode="contained"
-            onPress={() => {
-              setUser({
-                ...user,
-                license_number: Number(licenseNumber),
-                license_expiration: Number(licenseExpiration)
-              })
-            }}
+            onPress={handlePress}
             icon="arrow-right"
             contentStyle={styles.button}
           >

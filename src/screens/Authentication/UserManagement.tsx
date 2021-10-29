@@ -8,6 +8,21 @@ import Strings from '../../lib/utils/strings'
 
 const UserManagement = ({ navigation, route: { params: { user } } }: AppStackScreenProps<'AuthFlowUserManagement'>) => {
   const [management, setManagement] = useState<typeof managements[number]>()
+  const [error, setError] = useState('')
+
+  const handlePress = () => {
+    setError('')
+    if (!Boolean(management)) {
+      setError(Strings.pleaseSelectYourManagement)
+    } else {
+      navigation.navigate('AuthFlowUserRegister', {
+        user: {
+          ...user,
+          management: management?.initials ?? Strings.undefined
+        }
+      })
+    }
+  }
 
   return (
     <Surface style={styles.container}>
@@ -18,20 +33,14 @@ const UserManagement = ({ navigation, route: { params: { user } } }: AppStackScr
             items={managements}
             labelProperty='name'
             onItemPress={(key) => setManagement(managements[key])}
-            anchorLabel={Strings.managementDropdownLabel}
+            anchorLabel={error === '' ? Strings.managementDropdownLabel : error}
             containerStyle={styles.input}
             mode="outlined"
+            error={error !== ''}
           />
           <Button
             mode="contained"
-            onPress={() => {
-              navigation.navigate('AuthFlowUserRegister', {
-                user: {
-                  ...user,
-                  management: management?.initials ?? Strings.undefined
-                }
-              })
-            }}
+            onPress={handlePress}
             icon="arrow-right"
             contentStyle={styles.button}
           >
