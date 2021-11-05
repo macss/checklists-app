@@ -1,6 +1,8 @@
+import { signInAnonymously } from '@firebase/auth'
 import React, { useContext, useState } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet } from 'react-native'
 import { Button, Card, Surface, TextInput } from 'react-native-paper'
+import { auth } from '../../lib/config/firebaseConfig'
 import UserContext from '../../lib/contexts/UserContext'
 import { AppDimensions, defaultStyles } from '../../lib/theme'
 import { AppStackScreenProps } from '../../lib/utils'
@@ -29,11 +31,14 @@ const UserLicense = ({ route: { params: { user } }  }: AppStackScreenProps<'Auth
     }
 
     if (licenseNumber !== '' && licenseExpiration !== '') {
-      setUser({
-        ...user,
-        license_number: Number(licenseNumber),
-        license_expiration: Number(licenseExpiration)
-      })
+      signInAnonymously(auth)
+        .then(() => {          
+          setUser({
+            ...user,
+            license_number: Number(licenseNumber),
+            license_expiration: Number(licenseExpiration)
+          })
+        })
     }
 
   }
