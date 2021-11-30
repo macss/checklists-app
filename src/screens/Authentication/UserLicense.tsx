@@ -22,7 +22,7 @@ const UserLicense = ({ route: { params: { user } }  }: AppStackScreenProps<'Auth
   const handlePress = () => {
     setErrors({licenseExpiration: '', licenseNumber: ''})
 
-    let newErrors = {} as typeof errors
+    let newErrors = {licenseExpiration: '', licenseNumber: ''} as typeof errors
 
     if (licenseExpiration === '') {
       newErrors.licenseExpiration = Strings.pleaseEnterYourLicenseExpiration
