@@ -32,7 +32,7 @@ const UserManagement = ({ navigation, route: { params: { user } } }: AppStackScr
           <SelectDropDown 
             items={managements}
             labelProperty='name'
-            onItemPress={(key) => setManagement(managements[key])}
+            onItemPress={({ item }) => setManagement(item)}
             anchorLabel={error === '' ? Strings.managementDropdownLabel : error}
             containerStyle={styles.input}
             mode="outlined"

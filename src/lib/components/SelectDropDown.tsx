@@ -9,7 +9,7 @@ type SelectDropDownMenu<I> = {
   items: I[]
   labelProperty: keyof I
   anchorLabel?: string
-  onItemPress: (key: number) => void
+  onItemPress: ({ item, key }: { item: I, key: number }) => void
   containerStyle?: StyleProp<ViewStyle>
 } & Partial<TextInputProps>
 
@@ -46,7 +46,7 @@ const SelectDropDown = <I,>({ items, labelProperty, onItemPress, anchorLabel = S
         items.map((item, key) => (
           <List.Item 
             onPress={() => {
-              onItemPress(key)
+              onItemPress({ item, key })
               setSelectedKey(key)
               toggleMenu()
             }}

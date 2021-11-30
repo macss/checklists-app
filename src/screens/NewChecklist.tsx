@@ -101,7 +101,7 @@ const NewChecklist = ({ navigation }: AppDrawerScreenProps<'NewChecklist'>) => {
               placa: 'HBQ-7891'
             },
           ]}
-          onItemPress={(key) => console.log(key)}
+          onItemPress={({ item, key }) => console.log(`[${key}]: ${item.placa}`)}
           labelProperty='placa'
           anchorLabel={Strings.newChecklistDropdownLabel}
           containerStyle={{
