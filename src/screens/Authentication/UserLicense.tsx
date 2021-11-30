@@ -22,13 +22,17 @@ const UserLicense = ({ route: { params: { user } }  }: AppStackScreenProps<'Auth
   const handlePress = () => {
     setErrors({licenseExpiration: '', licenseNumber: ''})
 
+    let newErrors = {} as typeof errors
+
     if (licenseExpiration === '') {
-      setErrors(v => ({...v, licenseExpiration: Strings.pleaseEnterYourLicenseExpiration}))
+      newErrors.licenseExpiration = Strings.pleaseEnterYourLicenseExpiration
     }
 
     if (licenseNumber === '') {
-      setErrors(v => ({...v, licenseExpiration: Strings.licenseNumber}))
+      newErrors.licenseNumber = Strings.pleaseEnterYourLicenseNumber
     }
+
+    setErrors(newErrors)
 
     if (licenseNumber !== '' && licenseExpiration !== '') {
       signInAnonymously(auth)
